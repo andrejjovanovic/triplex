@@ -1,23 +1,78 @@
 #include<iostream>
 
-// Main function
-int main() {
+void PrintIntroduction(int LevelDifficulty) {
     // Print welcome message
-    std::cout << "You are trapped in a infinite door universe! But you are a brave agent!" << std::endl;
-    std::cout << "Enter the secret combination code to continue to next door..." << std::endl;
+    std::cout << "Entering the door with security level " << LevelDifficulty;
+    std::cout << "\nEnter the secret combination code to continue to next door...\n\n";
+}
+
+bool PlayGame(int LevelDifficulty) {
+     
+    PrintIntroduction(LevelDifficulty);
 
     // Declare 3 number code
-    const int a = 4;
-    const int b = 2;
-    const int c = 7;
+    const int CodeA = 4;
+    const int CodeB = 2;
+    const int CodeC = 7;
 
-    int sum = a + b + c;
-    int product = a * b * c;
+    const int CodeSum = CodeA + CodeB + CodeC;
+    const int CodeProduct = CodeA * CodeB * CodeC;
 
     // Print sum and product
-    std::cout << "There are 3 numbers in the code" << std::endl;
-    std::cout << "The codes add-up to: " << sum << std::endl;
-    std::cout << "The codes multiply to give: " << product << std::endl;
+    std::cout << "+ There are 3 numbers in the code";
+    std::cout << "\n+ The codes add-up to: " << CodeSum;
+    std::cout << "\n+ The codes multiply to give: " << CodeProduct << "\n\n";
 
+    // Store player guess
+    int GuessA, GuessB, GuessC;
+    std::cin >> GuessA >> GuessB >> GuessC;
+
+    int GuessSum = GuessA + GuessB + GuessC;
+    int GuessProduct = GuessA * GuessB * GuessC;
+
+    // Check if the player code is correct
+    if (GuessSum == CodeSum && GuessProduct == CodeProduct) {
+        std::cout << "\n\nWin\n";
+        return true;
+    }
+    else {
+        std::cout << "\n\nMore luck next time\n";
+        return false;
+    }
+}
+
+// Main function
+int main() {
+
+    int LevelDifficulty = 1;
+    const int MaxDifficulty = 5;
+
+        std::cout << R"(
+
+
+▄▄▄█████▓ ██▀███   ██▓ ██▓███   ██▓    ▓█████    ▒██   ██▒
+▓  ██▒ ▓▒▓██ ▒ ██▒▓██▒▓██░  ██▒▓██▒    ▓█   ▀    ▒▒ █ █ ▒░
+▒ ▓██░ ▒░▓██ ░▄█ ▒▒██▒▓██░ ██▓▒▒██░    ▒███      ░░  █   ░
+░ ▓██▓ ░ ▒██▀▀█▄  ░██░▒██▄█▓▒ ▒▒██░    ▒▓█  ▄     ░ █ █ ▒ 
+  ▒██▒ ░ ░██▓ ▒██▒░██░▒██▒ ░  ░░██████▒░▒████▒   ▒██▒ ▒██▒
+  ▒ ░░   ░ ▒▓ ░▒▓░░▓  ▒▓▒░ ░  ░░ ▒░▓  ░░░ ▒░ ░   ▒▒ ░ ░▓ ░
+    ░      ░▒ ░ ▒░ ▒ ░░▒ ░     ░ ░ ▒  ░ ░ ░  ░   ░░   ░▒ ░
+  ░        ░░   ░  ▒ ░░░         ░ ░      ░       ░    ░  
+            ░      ░               ░  ░   ░  ░    ░    ░      
+)" << '\n';
+
+    while(LevelDifficulty <= MaxDifficulty){
+        // Initialize level complete bool and start the game
+        bool bLevelComplete = PlayGame(LevelDifficulty);
+
+        // Clean out the user input buffers
+        std::cin.clear();
+        std::cin.ignore();
+
+        if(bLevelComplete) {
+            // Increase level difficulty
+            ++LevelDifficulty;
+        }
+    }
     return 0;
 }
