@@ -1,4 +1,5 @@
 #include<iostream>
+#include<ctime>
 
 void PrintIntroduction(int LevelDifficulty) {
     // Print welcome message
@@ -44,6 +45,7 @@ bool PlayGame(int LevelDifficulty) {
 // Main function
 int main() {
 
+    srand(time(NULL));
     int LevelDifficulty = 1;
     const int MaxDifficulty = 5;
 
