@@ -11,9 +11,9 @@ bool PlayGame(int LevelDifficulty) {
     PrintIntroduction(LevelDifficulty);
 
     // Declare 3 number code
-    const int CodeA = 4;
-    const int CodeB = 2;
-    const int CodeC = 7;
+    const int CodeA = rand() % LevelDifficulty + LevelDifficulty;
+    const int CodeB = rand() % LevelDifficulty + LevelDifficulty;
+    const int CodeC = rand() % LevelDifficulty + LevelDifficulty;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
@@ -74,5 +74,8 @@ int main() {
             ++LevelDifficulty;
         }
     }
+
+    std::cout << "You are out on the fresh air. Congratulations!" << std::endl;
+    
     return 0;
 }
